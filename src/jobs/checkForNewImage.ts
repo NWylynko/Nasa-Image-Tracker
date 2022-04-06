@@ -32,7 +32,7 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 
 export const checkForNewImage = async () => {
 
-    const { data: result } = await axios.get<AstronomyPictureOfTheDay>("planetary/apod", {});
+    const { data: result } = await axios.get<AstronomyPictureOfTheDay>("planetary/apod", { params: { api_key: process.env.NASA_KEY } });
 
     const client = await redis();
 
