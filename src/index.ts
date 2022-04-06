@@ -30,7 +30,7 @@ const main = async () => {
     }
 
     try {
-        await app.listen(3000, "127.0.0.1");
+        await app.listen(PORT, "127.0.0.1");
     } catch (error) {
         console.error(`failed to listen on PORT ${PORT}`, error);
     }
