@@ -6,7 +6,8 @@ This base is to provide a solid but simple template for a nodejs service. Whethe
 ## setup
   1. copy .env.example to .env
   2. run `yarn` to install dependencies
-  3. run `yarn dev` to start the development server
+  3. if using vscode run `yarn dlx @yarnpkg/sdks vscode`
+  4. run `yarn dev` to start the development server
 
 ## scripts
   - `yarn build` to build the production distribution
