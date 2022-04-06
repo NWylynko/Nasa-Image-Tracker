@@ -23,9 +23,9 @@ export const registerHandler = async (request: FastifyRequest) => {
 
 const register = async (email: string) => {
 
-    await redis.connect();
+    const client = await redis();
 
-    await redis.rPush("emails", email);
+    client.rPush("emails", email);
 
     return {
         email,

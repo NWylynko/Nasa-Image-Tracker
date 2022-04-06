@@ -4,6 +4,7 @@ import "dotenv/config";
 import { app } from "./app";
 import { checkForNewImage } from "./jobs/checkForNewImage";
 import cron from "node-cron";
+import { redis } from "./redis";
 
 const main = async () => {
 
@@ -36,6 +37,12 @@ const main = async () => {
     }
 
     cron.schedule("0 * * * *", checkForNewImage);
+
+    const client = await redis();
+
+    const emails = await client.lRange("emails", 0, -1);
+    
+    console.log(emails);
 
 };
 

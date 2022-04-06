@@ -34,15 +34,15 @@ export const checkForNewImage = async () => {
 
     const { data: result } = await axios.get<AstronomyPictureOfTheDay>("planetary/apod", {});
 
-    await redis.connect();
+    const client = await redis();
 
-    const oldImageDate = await redis.get("apod-date");
+    const oldImageDate = await client.get("apod-date");
 
     if (oldImageDate === result.date) return;
 
-    await redis.set("apod-date", result.date);
+    await client.set("apod-date", result.date);
 
-    const emails = await redis.lRange("emails", 0, -1);
+    const emails = await client.lRange("emails", 0, -1);
 
     const emailTemplate = {
         from: SENDGRID_FROM,
